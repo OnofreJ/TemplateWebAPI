@@ -1,7 +1,6 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace TemplateWebAPI.API.Tests
+namespace TemplateWebAPI.UI.Tests
 {
     [TestClass]
     public class UnitTest1

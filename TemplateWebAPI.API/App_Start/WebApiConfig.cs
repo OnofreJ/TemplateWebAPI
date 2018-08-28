@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web.Http;
+﻿using System.Web.Http;
 
 namespace TemplateWebAPI.API
 {
@@ -9,7 +6,18 @@ namespace TemplateWebAPI.API
     {
         public static void Register(HttpConfiguration config)
         {
+#if DEBUG
+            EnableCorsAttribute cors = new EnableCorsAttribute("*", "*", "*");
+
+            // Habilita o CORS
+            config.EnableCors(cors);
+#endif
+
             // Web API configuration and services
+            config.Formatters.Remove(config.Formatters.XmlFormatter);
+
+            // Web API routes
+            config.MapHttpAttributeRoutes();
 
             // Web API routes
             config.MapHttpAttributeRoutes();
