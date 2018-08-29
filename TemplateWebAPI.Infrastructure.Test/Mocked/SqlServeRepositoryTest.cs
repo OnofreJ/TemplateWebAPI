@@ -7,7 +7,7 @@ using System.Diagnostics.CodeAnalysis;
 using TemplateWebAPI.Infrastructure.Repositories;
 using TemplateWebAPI.Infrastructure.Repositories.Contracts;
 
-namespace TemplateWebAPI.Infrastructure.Test
+namespace TemplateWebAPI.Infrastructure.Test.Mocked
 {
     [ExcludeFromCodeCoverage]
     public class MockIDbTransaction : IDbTransaction
@@ -174,7 +174,7 @@ namespace TemplateWebAPI.Infrastructure.Test
             //Assert
             Assert.IsNotNull(result.Message);
             Assert.IsTrue(result.HasError);
-            Assert.IsNotInstanceOfType(result.Value, typeof(IDataReader));
+            Assert.IsNull(result.Value);
         }
 
         [TestMethod]
@@ -224,7 +224,7 @@ namespace TemplateWebAPI.Infrastructure.Test
             //Assert
             Assert.IsNotNull(result.Message);
             Assert.IsTrue(result.HasError);
-            Assert.IsNotInstanceOfType(result.Value, typeof(DataTable));
+            Assert.IsNull(result.Value);
         }
 
         [TestMethod]
@@ -333,7 +333,7 @@ namespace TemplateWebAPI.Infrastructure.Test
             //Assert
             Assert.IsNotNull(result.Message);
             Assert.IsTrue(result.HasError);
-            Assert.IsNotInstanceOfType(result.Value, typeof(int));
+            Assert.IsNull(result.Value);
         }
 
         [TestMethod]

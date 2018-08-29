@@ -9,6 +9,10 @@ namespace TemplateWebAPI.Infrastructure.Repositories
     ///     Esta classe é um mapeador de tabela-para-objeto DTOs (Data Transfer Objects), 
     ///     transformando uma tabela (ou um resultset qualquer) em outro tipo.
     /// </summary>
+    /// <remarks>
+    ///     Nome: Onofre Antonio Juvencio Jr.
+    ///     Data: 15/07/2018
+    /// </remarks>
     /// <typeparam name="TEntity">Tipo da entidade de negócio padrão (DTO) a ser retornado.</typeparam>
     public class Mapper<TEntity>
         where TEntity : class, new()

@@ -1,6 +1,7 @@
 using System.Configuration;
 using System.Data;
 using System.Diagnostics.CodeAnalysis;
+using TemplateWebAPI.API.Models;
 using TemplateWebAPI.Infrastructure.Repositories;
 using TemplateWebAPI.Infrastructure.Repositories.Contracts;
 

@@ -1,4 +1,8 @@
 using System.Linq;
+using TemplateWebAPI.API.Infrastructure;
+using TemplateWebAPI.API.Models;
+using TemplateWebAPI.API.Repositories;
+using TemplateWebAPI.Infrastructure.Repositories;
 
 namespace TemplateWebAPI.API.Services
 {

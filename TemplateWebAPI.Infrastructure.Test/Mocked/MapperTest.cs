@@ -6,7 +6,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using TemplateWebAPI.Infrastructure.Repositories;
 
-namespace TemplateWebAPI.Infrastructure.Test
+namespace TemplateWebAPI.Infrastructure.Test.Mocked
 {
     [ExcludeFromCodeCoverage]
     [TestClass]

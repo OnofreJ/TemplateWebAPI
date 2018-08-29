@@ -8,9 +8,12 @@ using TemplateWebAPI.Infrastructure.Repositories.Contracts;
 namespace TemplateWebAPI.Infrastructure.Repositories
 {
     /// <summary>
-    ///     Esta classe é responsável pelas comunicação/transações com o banco de 
-    ///     dados Microsoft SQL Server (2014 ou superior).
+    ///     Esta classe é responsável pelas comunicação/transações com o banco de dados Microsoft SQL Server (2014 ou superior).
     /// </summary>
+    /// <remarks>
+    ///     Nome: Onofre Antonio Juvencio Jr.
+    ///     Data: 15/07/2018
+    /// </remarks>
     public sealed class SqlServerRepository : ISqlServerRepository
     {
         #region SqlServerRepository - Fields

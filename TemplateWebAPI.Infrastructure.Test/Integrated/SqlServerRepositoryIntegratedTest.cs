@@ -6,8 +6,9 @@ using System.Diagnostics.CodeAnalysis;
 using TemplateWebAPI.Infrastructure.Repositories;
 using TemplateWebAPI.Infrastructure.Repositories.Contracts;
 
-namespace TemplateWebAPI.Infrastructure.Test
+namespace TemplateWebAPI.Infrastructure.Test.Integrated
 {
+
     [ExcludeFromCodeCoverage]
     [TestClass]
     public class SqlServerRepositoryIntegratedTest
