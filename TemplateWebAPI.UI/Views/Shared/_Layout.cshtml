@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Itau </title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="~/Assets/libs/w3schools/w3.min.css">
+    <link rel="stylesheet" href="~/Assets/libs/w3schools/w3-theme-blue-grey.min.css">
+    <link rel="stylesheet" href="~/Assets/css/app.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="~/Assets/libs/Angular/angular.min.js"></script>
+    <style>
+        html, body, h1, h2, h3, h4, h5, h6 {
+            font-family: "Roboto", sans-serif;
+        }
+
+        html, body {
+            color: #333;
+            font-size: 18px !important;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <div class="w3-top">
+        <ul class="w3-navbar w3-blue-grey w3-card-2 w3-left-align w3-large">
+            <li class="w3-hide-medium w3-hide-large w3-opennav w3-right">
+                <a href="#" class="w3-padding-24 w3-blue-grey w3-custom-hover-blue" onclick="myFunction();"><i class="fa fa-bars"></i></a>
+            </li>
+            <li><a href="~/Home" style="padding:10px 10px 10px 10px;" class="w3-orange"><img src="~/Assets/images/logo.png" /></a></li>
+            <li class="w3-hide-small"><a href="~/Ajuste" class="w3-padding-24 w3-blue-grey w3-custom-hover-blue">Ajustes</a></li>
+            <li class="w3-hide-small"><a href="#" class="w3-padding-24 w3-blue-grey w3-custom-hover-blue">Lançamentos</a></li>
+            <li class="w3-hide-small"><a href="#" class="w3-padding-24 w3-blue-grey w3-custom-hover-blue">Aprovação</a></li>
+        </ul>
+
+        <!-- Navbar on small screens -->
+        <div id="navDemo" class="w3-hide w3-hide-large w3-hide-medium">
+            <ul class="w3-navbar w3-left-align w3-large w3-blue-grey">
+                <li><a class="w3-padding-large w3-custom-hover-blue" href="~/Ajuste">Ajustes</a></li>
+                <li><a class="w3-padding-large w3-custom-hover-blue" href="#">Lançamentos</a></li>
+                <li><a class="w3-padding-large w3-custom-hover-blue" href="#">Aprovação</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- First Grid -->
+    <div class="w3-row-padding w3-padding-48 w3-container">
+        <div style="padding-top:30px" class="w3-content">
+            @RenderBody()
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="w3-container w3-padding-64 w3-center w3-theme-d4">
+        <div class="w3-xlarge w3-padding-32">
+            <a href="#" class="w3-hover-text-indigo"><i class="fa fa-facebook-official"></i></a>
+            <a href="#" class="w3-hover-text-blue-grey"><i class="fa fa-pinterest-p"></i></a>
+            <a href="#" class="w3-hover-text-light-blue"><i class="fa fa-twitter"></i></a>
+            <a href="#" class="w3-hover-text-grey"><i class="fa fa-flickr"></i></a>
+            <a href="#" class="w3-hover-text-indigo"><i class="fa fa-linkedin"></i></a>
+        </div>
+        <p>Powered by <a href="http://www.w3schools.com/w3css/default.asp" target="_blank">W3.CSS</a></p>
+    </footer>
+
+    <script>
+        // Used to toggle the menu on small screens when clicking on the menu button
+        function myFunction() {
+            var menu = document.getElementById("navDemo");
+            if (menu.className.indexOf("w3-show") == -1) {
+                menu.className += " w3-show";
+            } else {
+                menu.className = menu.className.replace(" w3-show", "");
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,79 @@
+@{ 
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div ng-app="ajusteApp" ng-controller="MainController" class="w3-custom-container">
+    <div class="w3-container">
+        <h2 class="w3-text-blue-gray">Ajustes</h2>
+        <p>
+            Esta funcionalidade de cadastro de ajustes permite que o usuário cadastre e mantenha os valores financeiros,
+            que serão utilizados no momento do cálculo do valor a pagar aos profissionais, e têm o objetivo de compensar
+            valores pagos a maior (ajustes a débito do profissional).
+        </p>
+    </div>
+
+    <form name="frmAjuste" role="form" ng-submit="Inserir()" novalidate="">
+        <div class="w3-half w3-container w3-padding-top">
+            <label class="w3-label w3-text-blue-gray"><b>Nome do ajuste</b></label>
+            <input name="txtNome" type="text"
+                   ng-class="{ 'w3-pale-red w3-border-red' : frmAjuste.txtNome.$invalid && !frmAjuste.txtNome.$pristine }"
+                   ng-model="NovoAjuste.NomeMotivoAjuste"
+                   ng-maxlength="50"
+                   ng-minlength="10"
+                   ng-required="true" maxlength="50" class="w3-input w3-border" placeholder="Informe o nome" />
+        </div>
+
+        <div class="w3-half w3-container w3-padding-top" style="padding-bottom:20px">
+            <label class="w3-label w3-text-blue-gray"><b>Grupo responsável</b></label>
+            <select name="cboGrupoResponsavel"
+                    ng-class="{ 'w3-pale-red w3-border-red' : frmAjuste.cboGrupoResponsavel.$invalid && !frmAjuste.cboGrupoResponsavel.$pristine }"
+                    ng-model="NovoAjuste.CodigoGrupoResponsavel" class="w3-select w3-border" ng-required="true">
+                <option ng-selected="NovoAjuste.CodigoGrupoResponsavel == item.Codigo" ng-repeat="item in GrupoResponsavel" value="{{item.Codigo}}">{{item.Nome}}</option>
+            </select>
+        </div>
+        
+        <div class="w3-half w3-container w3-padding-top" style="padding-bottom:20px">
+            <label class="w3-label w3-text-blue-gray"><b>Periodicidade</b></label>
+            <br />
+            <input class="w3-radio" id="rdoPeriodicidadePeriodico" ng-model="NovoAjuste.IndicadorPeriodicidade" type="radio" name="Periodicidade" value="S" checked>
+            <label for="rdoPeriodicidadePeriodico">Periódico</label>
+            <br />
+            <input class="w3-radio" id="rdoPeriodicidadePontual" ng-model="NovoAjuste.IndicadorPeriodicidade" type="radio" name="Periodicidade" value="N">
+            <label for="rdoPeriodicidadePontual">Pontual</label>
+            <br />
+        </div>
+
+        <div class="w3-half w3-container w3-padding-top" style="padding-bottom:20px">
+            <label class="w3-label w3-text-blue-gray"><b>Motivo</b></label>
+            <textarea id="txtDescricaoMotivoAjuste" ng-model="NovoAjuste.DescricaoMotivoAjuste" class="w3-input w3-border" rows="2" style="resize:none"></textarea>
+        </div>
+        
+        <div class="w3-container">
+            <button id="btnCancelar" onclick="window.location.href = '/Ajuste';" style="margin-left:10px" type="button" class="w3-btn w3-round w3-right w3-dark-gray w3-large">CANCELAR</button>
+            <button id="btnIncluir" ng-disabled="!frmAjuste.$valid" type="submit" class="w3-btn w3-round w3-right w3-green w3-large">INCLUIR</button>
+            <button id="btnAlterar" ng-disabled="!frmAjuste.$valid" type="button" ng-click="Alterar()" class="w3-btn w3-round w3-right w3-blue w3-large" style="display: none;">ALTERAR</button>
+        </div>
+    </form>
+
+    <div ng-cloak class="w3-container" style="padding-top:20px">
+        <div ng-show="MensagemErro" class="w3-container w3-red w3-round" style="margin-bottom:20px">
+            <span ng-click="MensagemErro = null" class="w3-closebtn">&times;</span>
+            <p>{{MensagemErro}}</p>
+        </div>
+
+        <div ng-show="MensagemSucesso" class="w3-container w3-green w3-round" style="margin-bottom:20px">
+            <span ng-click="MensagemSucesso = null" class="w3-closebtn">&times;</span>
+            <p>{{MensagemSucesso}}</p>
+        </div>
+
+        <div ng-show="MensagemInfo" class="w3-container w3-blue w3-round" style="margin-bottom:20px">
+            <span ng-click="MensagemInfo = null" class="w3-closebtn">&times;</span>
+            <p>{{MensagemInfo}}</p>
+        </div>
+    </div>
+
+    <div ng-show="PreloaderFlag" class="loader"></div>
+
+</div>
+
+<script src="~/App/Ajuste/NovoAjusteController.js"></script>

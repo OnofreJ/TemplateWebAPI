@@ -1,0 +1,100 @@
+@{ Layout = "~/Views/Shared/_Layout.cshtml"; }
+
+<div ng-app="dominioApp" ng-controller="MainController" class="w3-custom-container">
+    <div class="w3-container">
+        <h2 class="w3-text-blue-gray">Domínios</h2>
+        <p>
+            Os domínios técnicos estão agrupados em: domínio e tipo de tecnologia. Exemplo: Domínio técnico: Ambientes / Tecnologia:
+            .Net Compact Framework.
+        </p>
+    </div>
+
+    <form name="frmDominio" role="form" ng-submit="Inserir()" novalidate="">
+        <div class="w3-half w3-container w3-padding-top">
+            <label class="w3-label w3-text-blue-gray"><b>Nome</b></label>
+            <input name="txtNome" type="text" 
+                   ng-class="{ 'w3-pale-red w3-border-red' : frmDominio.txtNome.$invalid && !frmDominio.txtNome.$pristine }" 
+                   ng-model="NovoDominio.Nome" 
+                   ng-maxlength="50"
+                   ng-minlength="10"
+                   ng-required="true" maxlength="50" class="w3-input w3-border" placeholder="Informe o nome" />
+        </div>
+        
+        <div class="w3-half w3-container w3-padding-top" style="padding-bottom:20px">
+            <label class="w3-label w3-text-blue-gray"><b>Tipo</b></label>
+            <select name="cboCodigoTipo"
+                    ng-class="{ 'w3-pale-red w3-border-red' : frmDominio.cboCodigoTipo.$invalid && !frmDominio.cboCodigoTipo.$pristine }" 
+                    ng-model="NovoDominio.CodigoTipo" class="w3-select w3-border" ng-required="true">
+                <option ng-selected="NovoDominio.CodigoTipo == item.Codigo" ng-repeat="item in TipoDominio" value="{{item.Codigo}}">{{item.Nome}}</option>
+            </select>
+        </div>
+
+        <div class="w3-container">
+            <button id="btnIncluir" ng-disabled="!frmDominio.$valid" type="submit" class="w3-btn w3-round w3-right w3-green w3-large">INCLUIR</button>
+            <button id="btnCancelar" type="button" ng-click="Limpar()" class="w3-btn w3-round w3-right w3-dark-gray w3-large" style="display: none">CANCELAR</button>
+            <button id="btnAlterar" ng-disabled="!frmDominio.$valid" type="button" ng-click="Alterar()" class="w3-btn w3-round w3-right w3-blue w3-large" style="display: none; margin-right: 10px">ALTERAR</button>
+        </div>
+    </form>
+
+    <div ng-cloak class="w3-container" style="padding-top:20px">
+        <div ng-show="MensagemErro" class="w3-container w3-red w3-round" style="margin-bottom:20px">
+            <span ng-click="MensagemErro = null" class="w3-closebtn">&times;</span>
+            <p>{{MensagemErro}}</p>
+        </div>
+
+        <div ng-show="MensagemSucesso" class="w3-container w3-green w3-round" style="margin-bottom:20px">
+            <span ng-click="MensagemSucesso = null" class="w3-closebtn">&times;</span>
+            <p>{{MensagemSucesso}}</p>
+        </div>
+
+        <div ng-show="MensagemInfo" class="w3-container w3-blue w3-round" style="margin-bottom:20px">
+            <span ng-click="MensagemInfo = null" class="w3-closebtn">&times;</span>
+            <p>{{MensagemInfo}}</p>
+        </div>
+    </div>
+
+    <div ng-show="PreloaderFlag" class="loader"></div>
+
+    <div ng-cloak ng-show="Dominio" class="w3-container" style="padding-top:20px">
+        <table ng-cloak class="w3-table-all">
+            <thead>
+                <tr class="w3-theme-l4">
+                    <th style="cursor:pointer; text-align:center; width:5%" ng-click="SortOrder('Codigo')">#</th>
+                    <th style="cursor:pointer; width:65%" ng-click="SortOrder('Nome')">Nome</th>
+                    <th style="width:30%; text-align:center">Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="item in Dominio | orderBy:OrdenacaoDominio">
+                    <td style="text-align:center">{{item.Codigo}}</td>
+                    <td>
+                        <span ng-click="IniciarAlteracao(item.Codigo, item.Nome, item.CodigoTipo)"><a href="#" class="w3-hover-opacity">{{item.Nome}}</a></span>
+                    </td>
+                    <td style="text-align:center">
+                        <span ng-click="IniciarExclusao(item.Codigo, item.Nome)"><i class="fa fa-remove" style="color:red; font-size:25px"></i></span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div id="modalExclusao" class="w3-modal" style="display:none;">
+        <div class="w3-modal-content w3-animate-top w3-card-4" style="max-width:500px;">
+            <div class="w3-custom-container">
+                <header class="w3-container">
+                    <span onclick="document.getElementById('modalExclusao').style.display='none'" class="w3-closebtn">×</span>
+                    <h3 class="w3-text-blue-grey">Domínios</h3>
+                </header>
+                <div class="w3-container">
+                    Deseja realmente excluir o domínio <b>{{NomeExclusao}}</b>?
+                </div>
+                <footer class="w3-container w3-padding-top">
+                    <button class="w3-btn w3-large w3-round w3-dark-grey w3-right" onclick="document.getElementById('modalExclusao').style.display='none'">Cancelar</button>
+                    <button class="w3-btn w3-large w3-round w3-right w3-red" style="margin-right:10px" ng-click="Excluir()">Excluir</button>
+                </footer>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/Controllers/DominioController.min.js"></script>

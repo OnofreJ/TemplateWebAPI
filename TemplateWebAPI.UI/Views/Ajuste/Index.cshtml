@@ -1,0 +1,117 @@
+@{ 
+    Layout = "~/Views/Shared/_Layout.cshtml"; 
+}
+
+<div ng-app="ajusteApp" ng-controller="MainController" class="w3-custom-container">
+    <div class="w3-container">
+        <h2 class="w3-text-blue-gray">Ajustes</h2>
+        <p>
+            Esta funcionalidade de cadastro de ajustes permite que o usuário cadastre e mantenha os valores financeiros, 
+            que serão utilizados no momento do cálculo do valor a pagar aos profissionais, e têm o objetivo de compensar 
+            valores pagos a maior (ajustes a débito do profissional).
+        </p>
+    </div>
+
+    <form name="frmAjuste" role="form" ng-submit="Inserir()" novalidate="">
+        <div class="w3-third w3-container w3-padding-top">
+            <label class="w3-label w3-text-blue-gray"><b>Status</b></label>
+            <select ng-model="CodigoSituacao" id="cboStatus" class="w3-select w3-border">
+                <option ng-repeat="item in Status" value="{{item.Codigo}}">{{item.Nome}}</option>
+            </select>
+        </div>
+
+        <div class="w3-third w3-container w3-padding-top">
+            <label class="w3-label w3-text-blue-gray"><b>Grupo responsável</b></label>
+            <select ng-model="CodigoGrupoResponsavel" id="cboGrupoResponsavel" class="w3-select w3-border">
+                <option ng-repeat="item in GrupoResponsavel" value="{{item.Codigo}}">{{item.Nome}}</option>
+            </select>
+        </div>
+
+        <div class="w3-third w3-container w3-padding-top" style="padding-bottom:20px">
+            <label class="w3-label w3-text-blue-gray"><b>Periodicidade</b></label>
+            <select ng-model="IndicadorPeriodicidade" id="cboPeriodicidade" class="w3-select w3-border">
+                <option ng-repeat="item in Periodicidade" value="{{item.Codigo}}">{{item.Nome}}</option>
+            </select>
+        </div>
+
+        <div class="w3-container">
+            <button id="btnIncluir" type="button" class="w3-btn w3-round w3-right w3-green w3-large" onclick="window.location.href = 'Ajuste/Novo';">+ NOVO AJUSTE</button>
+            <button id="btnPesquisar" type="button" style="margin-right:10px" class="w3-btn w3-round w3-right w3-indigo w3-large" ng-click="Pesquisar()">PESQUISAR</button>
+            
+        </div>
+    </form>
+
+    <div ng-cloak class="w3-container" style="padding-top:20px">
+        <div ng-show="MensagemErro" class="w3-container w3-red w3-round" style="margin-bottom:20px">
+            <span ng-click="MensagemErro = null" class="w3-closebtn">&times;</span>
+            <p>{{MensagemErro}}</p>
+        </div>
+
+        <div ng-show="MensagemSucesso" class="w3-container w3-green w3-round" style="margin-bottom:20px">
+            <span ng-click="MensagemSucesso = null" class="w3-closebtn">&times;</span>
+            <p>{{MensagemSucesso}}</p>
+        </div>
+
+        <div ng-show="MensagemInfo" class="w3-container w3-blue w3-round" style="margin-bottom:20px">
+            <span ng-click="MensagemInfo = null" class="w3-closebtn">&times;</span>
+            <p>{{MensagemInfo}}</p>
+        </div>
+    </div>
+
+    <div ng-show="PreloaderFlag" class="loader"></div>
+
+    <div ng-cloak ng-show="Ajuste" class="w3-container" style="padding-top:20px">
+        <table ng-cloak class="w3-table-all" border="1">
+            <thead>
+                <tr class="w3-theme-l4">
+                    <th style="cursor:pointer; text-align:center; width:5%" ng-click="SortOrder('NumeroMotivoAjuste')">#</th>
+                    <th style="cursor:pointer; width:35%" ng-click="SortOrder('NomeMotivoAjuste')">Nome</th>
+                    <th style="cursor:pointer; width:15%; text-align:center" ng-click="SortOrder('NomeGrupoResponsavel')">Grupo</th>
+                    <th style="cursor:pointer; width:15%; text-align:center" ng-click="SortOrder('DescricaoPeriodicidade')">Periodicidade</th>
+                    <th style="cursor:pointer; width:15%; text-align:center" ng-click="SortOrder('NomeStatus')">Status</th>
+                    <th style="width:10%; text-align:center">Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="item in Ajuste | orderBy:OrdenacaoAjuste">
+                    <td style="text-align:center">{{item.NumeroMotivoAjuste}}</td>
+                    <td>
+                        <span ng-click="IniciarAlteracao(item.NumeroMotivoAjuste)"><a href="#" class="w3-hover-opacity">{{item.NomeMotivoAjuste}}</a></span>
+                    </td>
+                    <td style="text-align:center">
+                        {{item.NomeGrupoResponsavel}}
+                    </td>
+                    <td style="text-align:center">
+                        {{item.DescricaoPeriodicidade}}
+                    </td>
+                    <td style="text-align:center">
+                        {{item.NomeStatus}}
+                    </td>
+                    <td style="text-align:center">
+                        <span ng-click="IniciarExclusao(item.NumeroMotivoAjuste, item.NomeMotivoAjuste)"><i class="fa fa-remove" style="color:red; font-size:25px"></i></span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div id="modalExclusao" class="w3-modal" style="display:none;">
+        <div class="w3-modal-content w3-animate-top w3-card-4" style="max-width:500px;">
+            <div class="w3-custom-container">
+                <header class="w3-container">
+                    <span onclick="document.getElementById('modalExclusao').style.display='none'" class="w3-closebtn">×</span>
+                    <h3 class="w3-text-blue-grey">Ajustes</h3>
+                </header>
+                <div class="w3-container">
+                    Deseja realmente excluir o ajuste <b>{{NomeExclusao}}</b>?
+                </div>
+                <footer class="w3-container w3-padding-top">
+                    <button class="w3-btn w3-large w3-round w3-dark-grey w3-right" onclick="document.getElementById('modalExclusao').style.display='none'">Cancelar</button>
+                    <button class="w3-btn w3-large w3-round w3-right w3-red" style="margin-right:10px" ng-click="Excluir()">Excluir</button>
+                </footer>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/App/Ajuste/AjusteController.js"></script>
