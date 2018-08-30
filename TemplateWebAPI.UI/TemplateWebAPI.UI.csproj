@@ -93,6 +93,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AjusteController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -104,7 +106,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Ajuste\Index.cshtml" />
     <Content Include="Views\Ajuste\Novo.cshtml" />
-    <Content Include="Views\Ajuste\Dominio.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -114,10 +116,10 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Assets\libs\" />
-    <Folder Include="Controllers\" />
+    <Folder Include="Assets\css\fonts\" />
+    <Folder Include="Assets\libs\Angular\" />
+    <Folder Include="Assets\libs\W3schools\" />
     <Folder Include="Models\" />
-    <Folder Include="Views\Home\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

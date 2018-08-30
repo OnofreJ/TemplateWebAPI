@@ -1,6 +1,3 @@
-using Itau.Ajustes.API.Models;
-using Itau.Ajustes.API.Repositories;
-using Itau.Ajustes.API.Services;
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Net;
