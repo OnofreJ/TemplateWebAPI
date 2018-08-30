@@ -2,6 +2,9 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Net;
 using System.Web.Http;
+using TemplateWebAPI.API.Models;
+using TemplateWebAPI.API.Repositories;
+using TemplateWebAPI.API.Services;
 
 namespace Itau.Ajustes.API.Controllers
 {

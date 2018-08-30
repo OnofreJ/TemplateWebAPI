@@ -109,9 +109,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\TemplateWebAPI.Infrastructure\TemplateWebAPI.Infrastructure.csproj">
       <Project>{9e06cf60-c077-49fc-9f84-de9edf70ee36}</Project>

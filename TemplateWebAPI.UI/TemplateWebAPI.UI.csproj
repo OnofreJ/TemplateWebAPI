@@ -85,9 +85,13 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App\AjusteController.js" />
-    <Content Include="App\DominioController.js" />
     <Content Include="App\NovoAjusteController.js" />
     <Content Include="Assets\css\app.css" />
+    <Content Include="Assets\css\fonts\locastyle.svg" />
+    <Content Include="Assets\libs\Angular\angular-sanitize.min.js" />
+    <Content Include="Assets\libs\Angular\angular.min.js" />
+    <Content Include="Assets\libs\W3schools\w3-theme-blue-grey.css" />
+    <Content Include="Assets\libs\W3schools\w3.css" />
     <Content Include="Global.asax" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -102,6 +106,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
+    <Content Include="Assets\css\fonts\Roboto.woff2" />
     <None Include="packages.config" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Ajuste\Index.cshtml" />
@@ -115,10 +120,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
-    <Folder Include="Assets\css\fonts\" />
-    <Folder Include="Assets\libs\Angular\" />
-    <Folder Include="Assets\libs\W3schools\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <PropertyGroup>
